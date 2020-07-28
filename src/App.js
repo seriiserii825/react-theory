@@ -1,11 +1,17 @@
 import React from 'react';
 import './App.css';
+import './Car/Car';
+import Car from "./Car/Car";
 
 function App() {
+	const divStyle = {
+		textAlign: 'center',
+	}
 	return (
-		<div className="App">
+		<div style={divStyle}>
 			<h1>Hello world!!!</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa facere illum molestias? Ab dignissimos doloremque ea, molestiae nam necessitatibus nesciunt, nisi pariatur perferendis quae quod repudiandae sed similique tempora voluptates?</p>
+			<Car />
+			<Car/>
 		</div>
 	);
 }
