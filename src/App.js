@@ -10,8 +10,12 @@ function App() {
 	return (
 		<div style={divStyle}>
 			<h1>Hello world!!!</h1>
-			<Car />
-			<Car/>
+			<Car name={'Audi'} year={2014} />
+			<Car name={'Ford'} year={2017} >
+				<p>Color: </p>
+			</Car>
+			<Car name={'Mazda'} year={2011}/>
+			<Car name={'Toyota'} year={2014}/>
 		</div>
 	);
 }
