@@ -3,7 +3,7 @@ import './App.css';
 import './Car/Car';
 import Car from "./Car/Car";
 
-class App  extends React.Component{
+class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -12,28 +12,58 @@ class App  extends React.Component{
 				{name: 'Audi', year: 2016},
 				{name: 'Nisan', year: 2014},
 			],
-			pageTitle: 'React components'
+			pageTitle: 'React components',
+			showCars: false
 		}
 	}
 
-	changeTitleHandler = () => {
-		console.log('Click');
+	changeTitleHandler = (newTitle) => {
+		this.setState({
+			pageTitle: newTitle
+		});
 	}
+
+	toggleCarsHandler = () => {
+		this.setState({
+			showCars: !this.state.showCars
+		});
+	}
+
+	// handleInput = (event) => {
+	// 	this.setState({
+	// 		pageTitle: event.target.value
+	// 	});
+	// }
 
 	render() {
 		const divStyle = {
 			textAlign: 'center',
 		};
 
-		const cars = this.state.cars;
+		let cars = null
+
+		if (this.state.showCars) {
+			cars = this.state.cars.map((car) => {
+				return (
+					<Car
+						key={car.name}
+						name={car.name}
+						year={car.year}
+						onChangeTitle={() => {
+							this.changeTitleHandler(car.name)
+						}}
+					/>
+				)
+			})
+		}
 
 		return (
 			<div style={divStyle}>
 				<h1>{this.state.pageTitle}</h1>
-				<button onClick={this.changeTitleHandler}>Change title</button>
-				<Car name={this.state.cars[0].name} year={this.state.cars[0].year}/>
-				<Car name={this.state.cars[1].name} year={this.state.cars[1].year}/>
-				<Car name={this.state.cars[2].name} year={this.state.cars[2].year}/>
+				{/*<input type="text" onChange={this.handleInput}/>*/}
+				<button onClick={this.toggleCarsHandler}>Toggle cars</button>
+
+				{cars}
 			</div>
 		);
 	}
