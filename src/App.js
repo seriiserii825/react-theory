@@ -22,6 +22,13 @@ class App extends React.Component {
 			pageTitle: newTitle
 		});
 	}
+	onChangeName = (name, index) => {
+		const car = this.state.cars[index]
+		car.name = name
+		const cars = [...this.state.cars]
+		cars[index] = car
+		this.setState({cars})
+	}
 
 	toggleCarsHandler = () => {
 		this.setState({
@@ -29,11 +36,20 @@ class App extends React.Component {
 		});
 	}
 
-	// handleInput = (event) => {
-	// 	this.setState({
-	// 		pageTitle: event.target.value
-	// 	});
-	// }
+	handleInput = (event) => {
+		this.setState({
+			pageTitle: event.target.value
+		});
+	}
+
+	deleteHandler(index) {
+		const cars = this.state.cars.concat()
+		cars.splice(index, 1)
+		this.setState({
+			cars: cars
+		})
+	}
+
 
 	render() {
 		const divStyle = {
@@ -43,15 +59,16 @@ class App extends React.Component {
 		let cars = null
 
 		if (this.state.showCars) {
-			cars = this.state.cars.map((car) => {
+			cars = this.state.cars.map((car, index) => {
 				return (
 					<Car
-						key={car.name}
+						key={index}
 						name={car.name}
 						year={car.year}
-						onChangeTitle={() => {
-							this.changeTitleHandler(car.name)
+						onChangeName={(event) => {
+							this.onChangeName(event.target.value, index)
 						}}
+						onDelete = {this.deleteHandler.bind(this, index)}
 					/>
 				)
 			})
@@ -63,7 +80,10 @@ class App extends React.Component {
 				{/*<input type="text" onChange={this.handleInput}/>*/}
 				<button onClick={this.toggleCarsHandler}>Toggle cars</button>
 
-				{cars}
+				<div style={{
+					width: 300,
+					margin: 'auto',
+				}}>{cars}</div>
 			</div>
 		);
 	}
