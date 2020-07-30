@@ -5,14 +5,15 @@ import Car from "./Car/Car";
 import Counter from "./Counter/Counter";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			cars: [
 				{name: 'Ford', year: 2018},
-				// {name: 'Audi', year: 2016},
-				// {name: 'Nisan', year: 2014},
+				{name: 'Audi', year: 2022},
+				{name: 'Nisan', year: 2014},
 			],
 			pageTitle: 'React components',
 			showCars: false
