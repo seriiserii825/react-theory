@@ -5,12 +5,13 @@
 	box-shadow: 0 4px 8px rgba(0,0,0,.2);
 	border-radius: 5px;
 }
-.input {
-
+.input:focus {
+	color: darkmagenta;
+	background-color: #ddd;
 }
 .input.green {
-	outline: 1px solid green;
+	border: 1px solid green;
 }
 .input.red {
-	outline: 1px solid red;
+	border: 1px solid red;
 }

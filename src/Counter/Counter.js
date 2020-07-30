@@ -1,5 +1,6 @@
 import React from "react";
 import Auxiliary from "../hoc/Auxiliary";
+import Counter2 from "../Counter2/Counter2";
 
 export default class Counter extends React.Component {
 	state = {
@@ -30,6 +31,9 @@ export default class Counter extends React.Component {
 		return (
 			<Auxiliary>
 				<h2>Counter</h2>
+				<hr/>
+				<Counter2/>
+				<hr/>
 				<h4>{this.state.counter}</h4>
 				<button style={buttonStyle} onClick={this.addCounter}>+</button>
 				<button style={buttonStyle} onClick={() => {

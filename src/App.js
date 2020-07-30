@@ -4,7 +4,8 @@ import './Car/Car';
 import Car from "./Car/Car";
 import Counter from "./Counter/Counter";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-
+// import Counter2 from "./Counter2/Counter2";
+export const ClickedContext = React.createContext(false)
 
 class App extends React.Component {
 	constructor(props) {
@@ -16,7 +17,8 @@ class App extends React.Component {
 				{name: 'Nisan', year: 2014},
 			],
 			pageTitle: 'React components',
-			showCars: false
+			showCars: false,
+			clicked: false
 		}
 	}
 
@@ -68,6 +70,7 @@ class App extends React.Component {
 						<Car
 							name={car.name}
 							year={car.year}
+							index={index}
 							onChangeName={(event) => {
 								this.onChangeName(event.target.value, index)
 							}}
@@ -84,10 +87,13 @@ class App extends React.Component {
 				<h1>{this.props.title}</h1>
 				{/*<input type="text" onChange={this.handleInput}/>*/}
 				<button onClick={this.toggleCarsHandler}>Toggle cars</button>
+				<button onClick={() => this.setState({clicked: true})}>Change clicked</button>
 
+				<ClickedContext.Provider value={this.state.clicked}>
 				<hr/>
 				<Counter/>
 				<hr/>
+				</ClickedContext.Provider>
 
 				<div style={{
 					width: 300,
